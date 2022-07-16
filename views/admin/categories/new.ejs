@@ -1,0 +1,14 @@
+<%- include('../../partials/header.ejs') %>
+
+<section class="categories-new">
+    <div class="container">
+        <h1>Criar nova categoria</h1>
+        <form method="POST" action="/categories/save">
+            <label>Título</label>
+            <input type="text" name="title"></input>
+            <input type="submit" class="btn-save" value="Salvar"></a>
+        </form>
+    </div>
+</section>
+
+<%- include('../../partials/footer.ejs') %>
