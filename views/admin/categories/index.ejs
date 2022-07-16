@@ -20,7 +20,10 @@
           <a href="/admin/categories/edit/<%= category.id %>" class="btn-option"
             >Editar</a
           >
-          <a href="/categories/delete/<%= category.id %>" class="btn-option red"
+          <a
+            href="/categories/delete/<%= category.id %>"
+            class="btn-option red"
+            id="delete"
             >Excluir</a
           >
         </td>
@@ -29,5 +32,22 @@
     </table>
   </div>
 </section>
+
+<script>
+  const deleteBtns = document.querySelectorAll("#delete");
+  if (deleteBtns.length !== 0) {
+    deleteBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const decision = confirm(
+          "Tem certeza que deseja excluir esta categoria?"
+        );
+        if (decision) {
+          window.location.href = e.target.href;
+        }
+      });
+    });
+  }
+</script>
 
 <%- include('../../partials/footer.ejs') %>
