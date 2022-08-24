@@ -164,7 +164,9 @@ form label {
   margin-bottom: 5px;
 }
 
-form input {
+form input,
+form textarea,
+form select {
   width: 50%;
   outline: none;
   padding: 10px;
@@ -178,7 +180,6 @@ form input {
   border: none;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 20px;
   color: white;
   text-decoration: none;
   background: #0098c7;
