@@ -3,17 +3,14 @@ const router = express.Router();
 const Category = require("./Category");
 const Slugify = require("slugify");
 
-router.get("/admin/categories/new", (req, res) => {
-  res.render("admin/categories/new");
+router.get("/admin/categories", (req, res) => {
+  Category.findAll().then((categories) => {
+    res.render("admin/categories/index", { categories });
+  });
 });
 
-router.get("/admin/categories/edit/:id", (req, res) => {
-  const id = req.params.id;
-  if (id) {
-    Category.findByPk(id).then((category) => {
-      res.render("admin/categories/edit", { category });
-    });
-  }
+router.get("/admin/categories/new", (req, res) => {
+  res.render("admin/categories/new");
 });
 
 router.post("/categories/save", (req, res) => {
@@ -67,10 +64,13 @@ router.get("/categories/delete/:id", (req, res) => {
   }
 });
 
-router.get("/admin/categories", (req, res) => {
-  Category.findAll().then((categories) => {
-    res.render("admin/categories/index", { categories });
-  });
+router.get("/admin/categories/edit/:id", (req, res) => {
+  const id = req.params.id;
+  if (id) {
+    Category.findByPk(id).then((category) => {
+      res.render("admin/categories/edit", { category });
+    });
+  }
 });
 
 module.exports = router;

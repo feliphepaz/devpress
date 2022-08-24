@@ -1,0 +1,54 @@
+<%- include('../../partials/header.ejs') %>
+
+<section class="articles">
+  <div class="container">
+    <h1>Artigos</h1>
+    <br />
+    <a href="/admin/articles/new" class="btn-save">Criar novo artigo</a>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Título</th>
+        <th>Slug</th>
+        <th>Categoria</th>
+        <th>Ações</th>
+      </tr>
+      <% articles.forEach((article) => { %>
+      <tr>
+        <td><%= article.id %></td>
+        <td><%= article.title %></td>
+        <td><%= article.slug %></td>
+        <td><%= article.categoria.title %></td>
+        <td>
+          <a href="/admin/articles/edit/<%= article.id %>" class="btn-option"
+            >Editar</a
+          >
+          <a
+            href="/articles/delete/<%= article.id %>"
+            class="btn-option red"
+            id="delete"
+            >Excluir</a
+          >
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </div>
+</section>
+
+<script>
+  const deleteBtns = document.querySelectorAll("#delete");
+  if (deleteBtns.length !== 0) {
+    deleteBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const decision = confirm("Tem certeza que deseja excluir este artigo?");
+        if (decision) {
+          window.location.href = e.target.href;
+        }
+      });
+    });
+  }
+</script>
+
+<%- include('../../partials/footer.ejs') %>
