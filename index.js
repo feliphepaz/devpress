@@ -25,7 +25,13 @@ app.use("/", articlesController);
 app.use("/", categoriesController);
 
 app.get("/", (req, res) => {
-  res.render("index");
+  Category.findAll().then((categories) => {
+    Article.findAll({
+      include: [{ model: Category }],
+    }).then((articles) => {
+      res.render("index", { articles, category: false, categories });
+    });
+  });
 });
 
 app.listen(8080, () => {

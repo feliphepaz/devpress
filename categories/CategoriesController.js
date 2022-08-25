@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Category = require("./Category");
 const Slugify = require("slugify");
+const Article = require("../articles/Article");
 
 router.get("/admin/categories", (req, res) => {
   Category.findAll().then((categories) => {
@@ -70,6 +71,28 @@ router.get("/admin/categories/edit/:id", (req, res) => {
     Category.findByPk(id).then((category) => {
       res.render("admin/categories/edit", { category });
     });
+  }
+});
+
+router.get("/categories/:slug", (req, res) => {
+  const slug = req.params.slug;
+  if (slug) {
+    Category.findOne({
+      where: {
+        slug,
+      },
+      include: [{ model: Article }],
+    }).then((category) => {
+      Category.findAll().then((categories) => {
+        res.render("index", {
+          articles: category.artigos,
+          category,
+          categories,
+        });
+      });
+    });
+  } else {
+    res.redirect("/");
   }
 });
 

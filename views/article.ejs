@@ -3,21 +3,13 @@
 <main class="main">
   <div class="container">
     <ul>
-      <% articles.forEach((article) => { %>
       <li>
         <div>
           <h2><%= article.title %></h2>
-          <% if (category) { %>
-          <span><%= category.title %></span>
-          <% } else { %>
           <span><%= article.categoria.title %></span>
-          <% } %>
         </div>
-        <a href="/articles/<%= article.slug %>" class="btn-save"
-          >Visualizar artigo</a
-        >
+        <p><%- article.body %></p>
       </li>
-      <% }) %>
     </ul>
   </div>
 </main>

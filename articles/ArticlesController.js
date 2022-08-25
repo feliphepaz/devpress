@@ -18,6 +18,24 @@ router.get("/admin/articles/new", (req, res) => {
   });
 });
 
+router.get("/articles/:slug", (req, res) => {
+  const slug = req.params.slug;
+  if (slug) {
+    Article.findOne({
+      where: {
+        slug,
+      },
+      include: [{ model: Category }],
+    }).then((article) => {
+      Category.findAll().then((categories) => {
+        res.render("article", { article, categories });
+      });
+    });
+  } else {
+    res.redirect("/");
+  }
+});
+
 router.post("/articles/save", (req, res) => {
   const title = req.body.title;
   const body = req.body.body;
