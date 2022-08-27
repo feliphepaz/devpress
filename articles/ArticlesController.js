@@ -18,6 +18,19 @@ router.get("/admin/articles/new", (req, res) => {
   });
 });
 
+router.get("/admin/articles/edit/:id", (req, res) => {
+  const id = req.params.id;
+  Article.findOne({
+    where: {
+      id,
+    },
+  }).then((article) => {
+    Category.findAll().then((categories) => {
+      res.render("admin/articles/edit", { categories, article });
+    });
+  });
+});
+
 router.get("/articles/:slug", (req, res) => {
   const slug = req.params.slug;
   if (slug) {
@@ -47,6 +60,32 @@ router.post("/articles/save", (req, res) => {
       body,
       categoriaId: category,
     }).then(() => {
+      res.redirect("/admin/articles");
+    });
+  } else {
+    res.redirect("/admin/articles");
+  }
+});
+
+router.post("/articles/edit", (req, res) => {
+  const title = req.body.title;
+  const body = req.body.body;
+  const category = req.body.category;
+  const id = req.body.id;
+  if (title) {
+    Article.update(
+      {
+        title,
+        slug: Slugify(title),
+        body,
+        categoriaId: category,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    ).then(() => {
       res.redirect("/admin/articles");
     });
   } else {

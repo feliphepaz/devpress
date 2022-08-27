@@ -5,8 +5,9 @@
         <h1>Editar categoria - <%= category.title %></h1>
         <form method="POST" action="/categories/edit">
             <label>Título</label>
-            <input type="text" name="title"></input>
+            <input type="text" name="title" value="<%= category.title %>"></input>
             <input type="hidden" name="id" value="<%= category.id %>"></input>
+            <br>
             <input type="submit" class="btn-save" value="Editar" ></a>
         </form>
     </div>
