@@ -13,7 +13,7 @@
             <label>Categoria</label>
             <select name="category">
                 <% categories.forEach((category) => { %>
-                    <% if (category.id === article.categoriaId) { %>
+                    <% if (category.id === article.categoryId) { %>
                         <option value="<%= category.id %>" selected><%= category.title %></option>
                     <% } else { %>
                         <option value="<%= category.id %>"><%= category.title %></option>

@@ -58,7 +58,7 @@ router.post("/articles/save", (req, res) => {
       title,
       slug: Slugify(title),
       body,
-      categoriaId: category,
+      categoryId: category,
     }).then(() => {
       res.redirect("/admin/articles");
     });
@@ -78,7 +78,7 @@ router.post("/articles/edit", (req, res) => {
         title,
         slug: Slugify(title),
         body,
-        categoriaId: category,
+        categoryId: category,
       },
       {
         where: {

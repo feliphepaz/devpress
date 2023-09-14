@@ -85,7 +85,7 @@ router.get("/categories/:slug", (req, res) => {
     }).then((category) => {
       Category.findAll().then((categories) => {
         res.render("index", {
-          articles: category.artigos,
+          articles: category.articles,
           category,
           categories,
         });
