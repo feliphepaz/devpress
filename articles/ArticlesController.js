@@ -64,7 +64,7 @@ router.post("/articles/save", adminAuth, (req, res) => {
       res.redirect("/admin/articles");
     });
   } else {
-    res.redirect("/admin/articles");
+    res.redirect("/admin/articles/new");
   }
 });
 

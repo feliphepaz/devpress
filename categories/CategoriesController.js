@@ -54,6 +54,21 @@ router.post("/categories/edit", adminAuth, (req, res) => {
 router.get("/categories/delete/:id", adminAuth, (req, res) => {
   const id = req.params.id;
   if (id) {
+    Category.findOne({
+      where: {
+        id,
+      },
+      include: [{ model: Article }],
+    }).then((category) => {
+      category.articles.forEach((article) => {
+        Article.destroy({
+          where: {
+            id: article.id,
+          },
+        });
+      });
+    });
+
     Category.destroy({
       where: {
         id,
