@@ -13,14 +13,16 @@
         <a href="/">Devpress</a>
         <nav>
           <ul>
-            <li><a href="/">Home</a></li>
-            <% categories.forEach((category) => { %>
-            <li>
-              <a href="/categories/<%= category.slug %>"
-                ><%= category.title %></a
-              >
-            </li>
-            <% }) %>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <% categories.forEach((category) => { %>
+              <li>
+                <a href="/categories/<%= category.slug %>"
+                  ><%= category.title %></a
+                >
+              </li>
+              <% }) %>
+            </ul>
           </ul>
         </nav>
       </div>

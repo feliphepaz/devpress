@@ -1,0 +1,18 @@
+<%- include('../../partials/home-header.ejs') %>
+
+<section class="users-login">
+  <div class="container">
+      <h1>Login</h1>
+      <form method="POST" action="/users/login">
+          <label>Email</label>
+          <input type="email" name="email"></input>
+          <br>
+          <label>Senha</label>
+          <input type="password" name="password"></input>
+          <br>
+          <input type="submit" class="btn-save" value="Entrar"></a>
+      </form>
+  </div>
+</section>
+
+<%- include('../../partials/footer.ejs') %>

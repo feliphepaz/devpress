@@ -1,0 +1,18 @@
+<%- include('../../partials/home-header.ejs') %>
+
+<section class="users-new">
+  <div class="container">
+      <h1>Cadastro</h1>
+      <form method="POST" action="/users/save">
+          <label>Email</label>
+          <input type="email" name="email"></input>
+          <br>
+          <label>Senha</label>
+          <input type="password" name="password"></input>
+          <br>
+          <input type="submit" class="btn-save" value="Cadastrar"></a>
+      </form>
+  </div>
+</section>
+
+<%- include('../../partials/footer.ejs') %>
