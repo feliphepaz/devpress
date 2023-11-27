@@ -1,4 +1,3 @@
-const bodyParser = require("body-parser");
 const session = require("express-session");
 const express = require("express");
 const app = express();
@@ -16,8 +15,8 @@ app.use(
     cookie: { maxAge: 10800000 },
   })
 );
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(express.static("public"));
 
 connection
